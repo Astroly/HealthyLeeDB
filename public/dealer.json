@@ -1,0 +1,12 @@
+{
+    "dealer": [
+        {
+            "ID_dealer": "1",
+            "name_dealer": "mm",
+            "lastname_dealer": "mmm",
+            "email_dealer": "nitipon000@gmail.com",
+            "password_dealer": "11111111",
+            "confirmPassword_dealer": "11111111"
+        }
+    ]
+}
