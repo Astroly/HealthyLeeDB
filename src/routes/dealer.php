@@ -2,22 +2,27 @@
 require '../../vendor/autoload.php';
 $app = new Slim\App;
 
-/*
+
 //Get All Products
-$app->get('/api/products', function ($request, $response) {
+$app->get('/api/Dealer', function ($request, $response) {
     header("Content-Type: application/json");
     getProducts();
 });
 
 //GET Single Product
-$app->get('/api/products/{id}', function ($request, $response, $args) {
-    return '{"data":"' . $args['id'] . '"}'; 
+$app->get('/api/Dealer/{ID_dealer}', function ($request, $response, $args) {
+    return '{"data":"' . $args['ID_dealer'] . '"}'; 
 });
 
 
 
 function getProducts() {
-    $sql = "select productID, title, pisture, description FROM product";
+    $sql = "select ID_dealer,
+    name_dealer,
+    lastname_Dealer,
+    email_dealer,
+    password_dealer,
+    confirmPassword_dealer FROM Dealer";
       try {
         $db = getConnection();
         $stmt = $db->query($sql);
@@ -28,7 +33,7 @@ function getProducts() {
       catch(PDOException $e) {
         echo json_encode($e->getMessage());
       }
-    }*/
+    }
 function getConnection() {
     $dbhost="sql12.freemysqlhosting.net";
     $dbuser="sql12261060";

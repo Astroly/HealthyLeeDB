@@ -7,7 +7,7 @@ require '../config/db.php';
 $app = new \Slim\App;
 
 //Get All Products
-$app->get('/api/products/', function(Request $request, Response $response){
+$app->get('/api/Dealer/', function(Request $request, Response $response){
 
     return 'Connected';
     
@@ -34,11 +34,11 @@ $app->get('/api/products/', function(Request $request, Response $response){
     //     return '{"error": {"text": '.$e->getMessage().'}';
     // }
 });
-/*
+
 //GET Single Product
-$app->get('/api/product/{productID}',function(Request $request, Response $response){
-    $id = $request ->getAttribute('productID');
-    $sql = "SELECT * FROM product WHERE productID = $id";
+$app->get('/api/Dealer/{ID_dealer}',function(Request $request, Response $response){
+    $id = $request ->getAttribute('ID_dealer');
+    $sql = "SELECT * FROM Dealer WHERE ID_dealer = $id";
     
     try {
         $db = new db();
@@ -56,18 +56,28 @@ $app->get('/api/product/{productID}',function(Request $request, Response $respon
 
 //Add Products
 
-$app->post('/api/product/add',function(Request $request, Response $response) {
+$app->post('/api/Dealer/add',function(Request $request, Response $response) {
 
-    $productID = $request->getParam('productID') ;
-    $title = $request->getParam('title') ;
-    $picture = $request->getParam('picture') ;
-    $description = $request->getParam('description') ;
-    $price = $request->getParam('price') ;
-    
+    $ID_dealer = $request->getParam('ID_dealer') ;
+    $name_dealer = $request->getParam('name_dealer') ;
+    $lastname_Dealer = $request->getParam('lastname_Dealer') ;
+    $email_dealer = $request->getParam('email_dealer') ;
+    $password_dealer = $request->getParam('password_dealer') ;
+    $confirmPassword_dealer = $request->getParam('confirmPassword_dealer') ;
+     
 
 
 
-    $sql ="INSERT INTO product (productID,title,picture,description,price) VALUES (:productID,:title,:picture,:description,:price)" ;
+   $sql="INSERT INTO Dealer (ID_dealer,
+    name_dealer,
+    lastname_Deale,
+    email_dealer,
+    password_dealer,
+    confirmPassword_dealer) VALUES (:ID_dealer,
+:name_dealer,
+:email_dealer,
+:password_dealer,
+:confirmPassword_dealer)" ;
 
     try {
 
@@ -84,11 +94,14 @@ $app->post('/api/product/add',function(Request $request, Response $response) {
         $stmt = $db->prepare($sql) ;
 
 
-        $stmt->bindParam(':productID',    $productID) ;
-        $stmt->bindParam(':title',     $title) ;
-        $stmt->bindParam(':picture',    $picture) ;
-        $stmt->bindParam(':description',    $description) ;
-        $stmt->bindParam(':price',    $price) ;
+        $ID_dealer = $request->getParam('ID_dealer') ;
+        $name_dealer = $request->getParam('name_dealer') ;
+        $lastname_Dealer = $request->getParam('lastname_Dealer') ;
+        $email_dealer = $request->getParam('email_dealer') ;
+        $password_dealer = $request->getParam('password_dealer') ;
+        $confirmPassword_dealer = $request->getParam('confirmPassword_dealer') ;
+         
+    
 
 
 
@@ -110,27 +123,26 @@ $app->post('/api/product/add',function(Request $request, Response $response) {
 
 //Update Products
 
-$app->put('/api/product/update/{id}',function(Request $request, Response $response) {
+$app->put('/api/Dealer/update/{ID_dealer}',function(Request $request, Response $response) {
 
-    $productID = $request->getParam('productID') ;
-    $title = $request->getParam('title') ;
-    $picture = $request->getParam('picture') ;
-    $description = $request->getParam('description') ;
-    $price = $request->getParam('price') ;
-    
+    $ID_dealer = $request->getParam('ID_dealer') ;
+    $name_dealer = $request->getParam('name_dealer') ;
+    $lastname_Dealer = $request->getParam('lastname_Dealer') ;
+    $email_dealer = $request->getParam('email_dealer') ;
+    $password_dealer = $request->getParam('password_dealer') ;
+    $confirmPassword_dealer = $request->getParam('confirmPassword_dealer') ;
+     
+
 
 
 
     $sql = "UPDATE product SET
-
-            title = :title,
-
-            description = :description,
-
-            price = :price,
-            pic = :pic
-
-            WHERE productID=$id" ;
+            name_dealer,
+    lastname_Deale,
+    email_dealer,
+    password_dealer,
+    confirmPassword_dealer
+             WHERE ID_dealer=$id" ;
 
     try{
 
@@ -148,14 +160,15 @@ $app->put('/api/product/update/{id}',function(Request $request, Response $respon
 
 
 
-        $stmt->bindParam(':productID',    $productID) ;
+        $stmt->bindParam(':ID_dealer',    $ID_dealer) ;
 
-        $title = $request->getParam('title') ;
-        $picture = $request->getParam('picture') ;
-        $description = $request->getParam('description') ;
-        $price = $request->getParam('price') ;
-
-
+  
+    $name_dealer = $request->getParam('name_dealer') ;
+    $lastname_Dealer = $request->getParam('lastname_Dealer') ;
+    $email_dealer = $request->getParam('email_dealer') ;
+    $password_dealer = $request->getParam('password_dealer') ;
+    $confirmPassword_dealer = $request->getParam('confirmPassword_dealer') ;
+     
 
         $stmt->execute() ;
 
@@ -175,11 +188,11 @@ $app->put('/api/product/update/{id}',function(Request $request, Response $respon
 
 //Delete Product
 
-$app->delete('/api/product/delete/{productID}', function(Request $request, Response $response){
+$app->delete('/api/Dealer/delete/{ID_dealer}', function(Request $request, Response $response){
 
-    $id = $request->getAttribute('id');
+    $id = $request->getAttribute('ID_dealer');
 
-    $sql = "DELETE FROM product WHERE productID=$id";
+    $sql = "DELETE FROM Dealer WHERE ID_dealer=$id";
 
     try{
 
@@ -212,7 +225,7 @@ $app->delete('/api/product/delete/{productID}', function(Request $request, Respo
 
 
 });
-*/
+
 $app->run();
 
 ?>

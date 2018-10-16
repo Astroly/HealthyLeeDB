@@ -9,17 +9,17 @@ $app = new Slim\App;
 //test
 $app->get('/api/test', function ($request, $response) {
     return 'hello world';
-});/*
+});
 //getAll
-$app->get('/api/products', function ($request, $response) {
+$app->get('/api/Dealer', function ($request, $response) {
     header("Content-Type: application/json");
     getProducts();
 });
 //getByID
-$app->get('/api/products/{id}', function ($request, $response, $args) {
+$app->get('/api/Dealer/{ID_dealer}', function ($request, $response, $args) {
     header("Content-Type: application/json");
 
-    $sql = "SELECT * FROM product where productID =  ('".$args['id']."')";
+    $sql = "SELECT * FROM Dealer where ID_dealer =  ('".$args['ID_dealer']."')";
     
     try {
         $db = getConnection();
@@ -33,20 +33,25 @@ $app->get('/api/products/{id}', function ($request, $response, $args) {
 });
 
 //POST ...ADD
-  $app->post('/api/products/', function ($request, $response) {
+  $app->post('/api/Dealer/', function ($request, $response) {
     header("Content-Type: application/json");
-     $productID = $request->getParam('productID') ;
-      $title = $request->getParam('title') ;
-      $picture = $request->getParam('picture') ;
-      $description = $request->getParam('description') ;
-      $price = $request->getParam('price') ;
-      $weight = $request->getParam('weight_kg') ;
+    $ID_dealer = $request->getParam('ID_dealer') ;
+    $name_dealer = $request->getParam('name_dealer') ;
+    $lastname_Dealer = $request->getParam('lastname_Dealer') ;
+    $email_dealer = $request->getParam('email_dealer') ;
+    $password_dealer = $request->getParam('password_dealer') ;
+    $confirmPassword_dealer = $request->getParam('confirmPassword_dealer') ;
      
 try {
     $db = getConnection();
     
-    $sql="INSERT INTO product(productID,title,picture,description,price,weight_kg)
-    VALUES ('" .$productID."','" .$title."','" .$picture."' ,'" .$description."','" .$price."','" .$weight."')";
+    $sql="INSERT INTO product (ID_dealer,
+    name_dealer,
+    lastname_Deale,
+    email_dealer,
+    password_dealer,
+    confirmPassword_dealer)
+    VALUES ('" .$ID_dealer."','" .$name_dealer."','" .$lastname_Deale."' ,'" .$email_dealer."','" .$password_dealer."','" .$confirmPassword_dealer."')";
     $stmt = $db->query($sql);
     $db = null;
     return '{"status" : "ADD Success" }';
@@ -57,27 +62,28 @@ try {
 });
 
 //PUT...UPDATE
- $app->put('/api/products/{id}',function($request, $response, $args) {
+ $app->put('/api/Dealer/{ID_dealer}',function($request, $response, $args) {
     header("Content-Type: application/json");
    // header("Content-Type: application/json");
     
-    $productID = $request->getParam('productID') ;
-    $title = $request->getParam('title') ;
-    $picture =$request->getParam('picture') ;
-    $description =$request->getParam('description') ;
-    $price =$request->getParam('price') ;
-    $weight = $request->getParam('weight_kg') ;
+   $ID_dealer = $request->getParam('ID_dealer') ;
+   $name_dealer = $request->getParam('name_dealer') ;
+   $lastname_Dealer = $request->getParam('lastname_Dealer') ;
+   $email_dealer = $request->getParam('email_dealer') ;
+   $password_dealer = $request->getParam('password_dealer') ;
+   $confirmPassword_dealer = $request->getParam('confirmPassword_dealer') ;
+    
 
 try{
  $db = getConnection();  
 $sql="UPDATE product SET
-    title=('".$title."'),
-    picture=('".$picture."'),
-    description=('".$description."'),
-    price=('".$price."'),
-    weight_kg=('".$weight."')
+    name_dealer=('".$name_dealer."'),
+    lastname_Deale=('".$lastname_Deale."'),
+    email_dealer=('".$email_dealer."'),
+    password_dealer=('".$password_dealer."'),
+    confirmPassword_dealer=('".$confirmPassword_dealer."')
     
-     WHERE productID= ('".$args['id']."') " ;  
+     WHERE ID_dealer= ('".$args['ID_dealer']."') " ;  
 $stmt = $db->query($sql);
  $db = null;
 
@@ -89,10 +95,10 @@ return '{"status" : "UPDATE Success" }';
 });
 
 //Delete
-$app->delete('/api/products/delete/{id}', function($request, $response, $args) {
+$app->delete('/api/Dealer/delete/{ID_dealer}', function($request, $response, $args) {
     header("Content-Type: application/json");
 
-    $sql = "DELETE FROM product WHERE productID = ('".$args['id']."')";
+    $sql = "DELETE FROM Dealer WHERE ID_dealer = ('".$args['ID_dealer']."')";
     
     try {
         $db = getConnection();
@@ -107,13 +113,13 @@ $app->delete('/api/products/delete/{id}', function($request, $response, $args) {
 
 
 
-*/
+
 
 $app->run();
 
-/*
+
 function getProducts() {
-    $sql = "SELECT * FROM product";
+    $sql = "SELECT * FROM Dealer";
       try {
         $db = getConnection();
         $stmt = $db->query($sql);
@@ -126,7 +132,7 @@ function getProducts() {
       }
     }
 
-   */ 
+   
 function getConnection() {
     $dbhost="sql12.freemysqlhosting.net";
     $dbuser="sql12261060";
